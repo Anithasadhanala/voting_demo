@@ -1,17 +1,18 @@
 const express = require ('express')
 const app = express()
-const mysql = require('mysql')
+const phpmyadmin = require('mysql')
 const bodyParser = require('body-parser')
 const cors = require("cors")
 const path = require('path')
 
 
-const db = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    port: "3030",
-    password: "Anith@11",
-    database: "voting_main",
+
+const db = phpmyadmin.createPool({
+    host: "sql12.freesqldatabase.com",
+    user: "sql12603402",
+    port: "3306",
+    password: "hDMKBw1wSv",
+    database: "sql12603402",
     insecureAuth : true
 })
 
@@ -24,7 +25,7 @@ app.post('/president',(req,res)=>{
 
     const vote =  req.body.vote
     const result  = req.body.result
-    const queryInsert = "update pdf_excel_data_csv set president= (?) where roll_num =(?) "
+    const queryInsert = "update voting_demo set president= (?) where roll_num =(?) "
     db.query(queryInsert,[vote,result],(err,result)=>{
        console.log("president:  ",err,2)
         console.log("president :  ",result,4);
@@ -37,7 +38,7 @@ app.post('/vice',(req,res)=>{
 
     const vote =  req.body.vote
     const result  = req.body.result
-    const queryInsert = "update pdf_excel_data_csv set vice_president = (?) where roll_num =(?) "
+    const queryInsert = "update voting_demo set vice_president = (?) where roll_num =(?) "
     db.query(queryInsert,[vote,result],(err,result)=>{
        console.log("vice :  ",err,2)
         console.log("vice :  ",result,4);
@@ -49,7 +50,7 @@ app.post('/vice',(req,res)=>{
 app.post('/credentials',(req,res)=>{
 
     const resu  = req.body.result
-    const queryInsert = "select * from pdf_excel_data_csv where roll_num = (?) and president = 3 and vice_president = 1"
+    const queryInsert = "select * from voting_demo where roll_num = (?) and president = 0 and vice_president = 0"
     db.query(queryInsert,[resu],(err,result)=>{
        console.log("credencials :  ",err,2)
         console.log("credencials :  ",result,4);
@@ -63,7 +64,7 @@ app.post('/credentials',(req,res)=>{
 })
 
 
-const PORT = process.env || 8000
-app.listen(8000,()=>{
+const port = process.env.PORT || 8000
+app.listen(port,()=>{
     console.log("server running :8000")
 })
