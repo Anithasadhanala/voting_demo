@@ -19,7 +19,7 @@ const db = phpmyadmin.createPool({
 app.use(express.static(path.join(__dirname+'/public/build')))
 
 
-console.log("testing....")
+console.log("testing.....")
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
