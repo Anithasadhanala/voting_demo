@@ -9,10 +9,10 @@ const path = require('path')
 
 const db = phpmyadmin.createPool({
     host: "sql12.freesqldatabase.com",
-    user: "sql12610997",
+    user: "sql12611001",
     port: "3306",
-    password: "sMRyC87AsP",
-    database: "sql12610997",
+    password: "WqPXs2IZ1g",
+    database: "sql12611001",
     insecureAuth : true
 })
 
