@@ -1,6 +1,7 @@
 const express = require ('express')
 const app = express()
 const phpmyadmin = require('mysql')
+
 const bodyParser = require('body-parser')
 const cors = require("cors")
 const path = require('path')
@@ -36,6 +37,19 @@ app.post('/president',(req,res)=>{
     res.send("president votes done")
 })
 
+app.post('/manager',(req,res)=>{
+
+    const vote =  req.body.vote
+    const result  = req.body.result
+    const queryInsert = "update voting_demo set manager= (?) where roll_num =(?) "
+    db.query(queryInsert,[vote,result],(err,result)=>{
+       console.log("manager:  ",err,2)
+        console.log("manager :  ",result,4);
+    })
+    res.send("manager votes done")
+})
+
+
 
 app.post('/vice',(req,res)=>{
 
@@ -53,7 +67,7 @@ app.post('/vice',(req,res)=>{
 app.post('/credentials',(req,res)=>{
 
     const resu  = req.body.result
-    const queryInsert = "select * from voting_demo where roll_num = (?) and president = 0 and vice_president = 0"
+    const queryInsert = "select * from voting_demo where roll_num = (?) and president = 0 and vice_president = 0 and manager = 0"
     db.query(queryInsert,[resu],(err,result)=>{
        console.log("credencials :  ",err,2)
         console.log("credencials :  ",result,4);
@@ -65,6 +79,8 @@ app.post('/credentials',(req,res)=>{
         }
     })  
 })
+
+
 
 
 const port = process.env.PORT || 8000
