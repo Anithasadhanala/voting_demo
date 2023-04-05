@@ -10,10 +10,10 @@ const path = require('path')
 
 const db = phpmyadmin.createPool({
     host: "sql12.freesqldatabase.com",
-    user: "sql12607066",
+    user: "sql12611448",
     port: "3306",
-    password: "GS8F1nj5VW",
-    database: "sql12607066",
+    password: "pTICRnPSDW",
+    database: "sql12611448",
     insecureAuth : true
 })
 
@@ -61,6 +61,18 @@ app.post('/vice',(req,res)=>{
         console.log("vice :  ",result,4);
     })
     res.send("vice-president vote done")
+})
+
+app.post('/manager',(req,res)=>{
+
+    const vote =  req.body.vote
+    const result  = req.body.result
+    const queryInsert = "update voting_demo set manager = (?) where roll_num =(?) "
+    db.query(queryInsert,[vote,result],(err,result)=>{
+       console.log("manager :  ",err,2)
+        console.log("manager :  ",result,4);
+    })
+    res.send("manager vote done")
 })
 
 
