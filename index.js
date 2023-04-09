@@ -10,15 +10,15 @@ const path = require('path')
 
 
 const db = phpmyadmin.createPool({
-    host: "sql12.freesqldatabase.com",
-    user: "sql12611506",
-    port: "3306",
-    password: "w2aXzxG9jN",
-    database: "sql12611506",
+    host: "localhost",
+    user: "root",
+    port: "3030",
+    password: "Anith@11",
+    database: "voting_main",
     insecureAuth : true
 })
 
-app.use(express.static(path.join(__dirname+'/public/build')))
+//app.use(express.static(path.join(__dirname+'/public/build')))
 
 
 console.log("testing.....")
@@ -28,21 +28,24 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.post('/president',(req,res)=>{
 
-    const vote =  req.body.vote
-    const result  = req.body.result
-    const queryInsert = "update voting_demo set president= (?) where roll_num =(?) "
+    let vote =  req.body.vote
+    let result  = req.body.result
+    
+    
+    const queryInsert = "update pdf_excel_data_csv set president = (?) where roll_num =(?) "
     db.query(queryInsert,[vote,result],(err,result)=>{
        console.log("president:  ",err,2)
         console.log("president :  ",result,4);
+        res.send(result)
     })
-    res.send("president votes done")
+    
 })
 
 app.post('/manager',(req,res)=>{
 
     const vote =  req.body.vote
     const result  = req.body.result
-    const queryInsert = "update voting_demo set manager= (?) where roll_num =(?) "
+    const queryInsert = "update pdf_excel_data_csv set manager= (?) where roll_num =(?) "
     db.query(queryInsert,[vote,result],(err,result)=>{
        console.log("manager:  ",err,2)
         console.log("manager :  ",result,4);
@@ -56,7 +59,7 @@ app.post('/vice',(req,res)=>{
 
     const vote =  req.body.vote
     const result  = req.body.result
-    const queryInsert = "update voting_demo set vice_president = (?) where roll_num =(?) "
+    const queryInsert = "update pdf_excel_data_csv set vice_president = (?) where roll_num =(?) "
     db.query(queryInsert,[vote,result],(err,result)=>{
        console.log("vice :  ",err,2)
         console.log("vice :  ",result,4);
@@ -64,28 +67,19 @@ app.post('/vice',(req,res)=>{
     res.send("vice-president vote done")
 })
 
-app.post('/manager',(req,res)=>{
-
-    const vote =  req.body.vote
-    const result  = req.body.result
-    const queryInsert = "update voting_demo set manager = (?) where roll_num =(?) "
-    db.query(queryInsert,[vote,result],(err,result)=>{
-       console.log("manager :  ",err,2)
-        console.log("manager :  ",result,4);
-    })
-    res.send("manager vote done")
-})
 
 
 app.post('/credentials',(req,res)=>{
 
-    const resu  = req.body.result
-    const queryInsert = "select * from voting_demo where roll_num = (?) and president = 0 and vice_president = 0 and manager = 0"
+    let resu  = req.body.result
+  
+    console.log(resu)
+    const queryInsert = "select * from pdf_excel_data_csv where roll_num = (?) and president = 0 and vice_president = 0"
     db.query(queryInsert,[resu],(err,result)=>{
        console.log("credencials :  ",err,2)
         console.log("credencials :  ",result,4);
         if(err === null && result.length !== 0){
-            res.send(resu)
+            res.send(result)
         }
         else{
             res.send("no result")
