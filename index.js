@@ -14,7 +14,7 @@ const db = phpmyadmin.createPool({
     host: "database-votingforsac.cvkofbibnz11.ap-northeast-1.rds.amazonaws.com",
     user: "admin",
     port: "3306",
-    password: "Anitha",
+    password: "Anithasai123",
     database: "database-votingforsac",
     insecureAuth : true
 })
