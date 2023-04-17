@@ -3,6 +3,7 @@ const express = require ('express')
 const app = express()
 const phpmyadmin = require('mysql')
 
+
 const bodyParser = require('body-parser')
 const cors = require("cors")
 const path = require('path')
@@ -10,11 +11,11 @@ const path = require('path')
 
 
 const db = phpmyadmin.createPool({
-    host: "localhost",
-    user: "root",
-    port: "3030",
-    password: "Anith@11",
-    database: "voting_main",
+    host: "database-votingforsac.cvkofbibnz11.ap-northeast-1.rds.amazonaws.com",
+    user: "admin",
+    port: "3360",
+    password: "Anithasai123",
+    database: "aws_db",
     insecureAuth : true
 })
 
@@ -32,7 +33,7 @@ app.post('/president',(req,res)=>{
     let result  = req.body.result
     
     
-    const queryInsert = "update pdf_excel_data_csv set president = (?) where roll_num =(?) "
+    const queryInsert = "update voting_sac set president = (?) where roll_num = (?) "
     db.query(queryInsert,[vote,result],(err,result)=>{
        console.log("president:  ",err,2)
         console.log("president :  ",result,4);
@@ -45,7 +46,7 @@ app.post('/manager',(req,res)=>{
 
     const vote =  req.body.vote
     const result  = req.body.result
-    const queryInsert = "update pdf_excel_data_csv set manager= (?) where roll_num =(?) "
+    const queryInsert = "update voting_sac set general_manager= (?) where roll_num =(?) "
     db.query(queryInsert,[vote,result],(err,result)=>{
        console.log("manager:  ",err,2)
         console.log("manager :  ",result,4);
@@ -59,7 +60,7 @@ app.post('/vice',(req,res)=>{
 
     const vote =  req.body.vote
     const result  = req.body.result
-    const queryInsert = "update pdf_excel_data_csv set vice_president = (?) where roll_num =(?) "
+    const queryInsert = "update voting_sac set vice_president = (?) where roll_num =(?) "
     db.query(queryInsert,[vote,result],(err,result)=>{
        console.log("vice :  ",err,2)
         console.log("vice :  ",result,4);
@@ -74,7 +75,7 @@ app.post('/credentials',(req,res)=>{
     let resu  = req.body.result
   
     console.log(resu)
-    const queryInsert = "select * from pdf_excel_data_csv where roll_num = (?) and president = 0 and vice_president = 0"
+    const queryInsert = "select * from voting_sac where roll_num = (?)"
     db.query(queryInsert,[resu],(err,result)=>{
        console.log("credencials :  ",err,2)
         console.log("credencials :  ",result,4);
@@ -85,6 +86,8 @@ app.post('/credentials',(req,res)=>{
             res.send("no result")
         }
     })  
+
+
 })
 
 
