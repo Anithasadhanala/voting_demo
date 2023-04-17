@@ -13,7 +13,7 @@ const path = require('path')
 const db = phpmyadmin.createPool({
     host: "database-votingforsac.cvkofbibnz11.ap-northeast-1.rds.amazonaws.com",
     user: "admin",
-    port: "3360",
+    port: "3306",
     password: "Anitha",
     database: "database-votingforsac",
     insecureAuth : true
