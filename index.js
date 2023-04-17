@@ -15,7 +15,7 @@ const db = phpmyadmin.createPool({
     user: "admin",
     port: "3306",
     password: "Anithasai123",
-    database: "database-votingforsac",
+    database: "aws_db",
     insecureAuth : true
 })
 
