@@ -19,7 +19,7 @@ const db = phpmyadmin.createPool({
     insecureAuth : true
 })
 
-//app.use(express.static(path.join(__dirname+'/public/build')))
+app.use(express.static(path.join(__dirname+'/public/build')))
 
 
 console.log("testing.....")
