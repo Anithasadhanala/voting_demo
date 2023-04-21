@@ -34,7 +34,7 @@ app.post('/president',(req,res)=>{
     let result  = req.body.result
     
     
-    const queryInsert = "update voting_sac set president = (?) where roll_num != null "
+    const queryInsert = "update voting_sac set president = 0"
     db.query(queryInsert,[vote],(err,result)=>{
        console.log("president:  ",err,2)
         console.log("president :  ",result,4);
@@ -47,7 +47,7 @@ app.post('/manager',(req,res)=>{
 
     const vote =  req.body.vote
     const result  = req.body.result
-    const queryInsert = "update voting_sac set general_manager= (?) where roll_num != null "
+    const queryInsert = "update voting_sac set general_manager= 0"
     db.query(queryInsert,[vote],(err,result)=>{
        console.log("manager:  ",err,2)
         console.log("manager :  ",result,4);
@@ -61,7 +61,7 @@ app.post('/vice',(req,res)=>{
 
     const vote =  req.body.vote
     const result  = req.body.result
-    const queryInsert = "update voting_sac set vice_president = (?) where roll_num != null "
+    const queryInsert = "update voting_sac set vice_president = 0"
     db.query(queryInsert,[vote],(err,result)=>{
        console.log("vice :  ",err,2)
         console.log("vice :  ",result,4);
