@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  #Node js service container
+
+  node_service:
+    build: .
+    ports:
+      - 8000:8000
+    
+    
+  
