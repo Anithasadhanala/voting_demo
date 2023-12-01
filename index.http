@@ -1,7 +1,0 @@
-POST https://votingforsac.onrender.com/vice
-Content-Type: "application/json"
-
-{
-    'vote' : 2,
-    'result' : '20MH1A4248',
-}
