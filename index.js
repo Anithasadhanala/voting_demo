@@ -92,5 +92,5 @@ app.post('/credentials',(req,res)=>{
 
 const port = process.env.PORT || 8000
 app.listen(port,()=>{
-    console.log("server running :800000000000000000")
+    console.log("server running :8000")
 })
